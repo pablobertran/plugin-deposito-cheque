@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background"
+    tools:context="ec.com.easysoft.bancamovil.capturacheque.PreviewPhotoActivity">
+
+    <!-- Camera Preview -->
+    <ImageView
+        android:id="@+id/photo_preview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/overlay">
+
+    </ImageView>
+    <!-- /End Camera Preview -->
+    <!-- Overlay -->
+    <RelativeLayout
+        android:id="@+id/overlay"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:background="#000000"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/speedBackgound"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/lastPic"
+            android:layout_gravity="center"
+            android:layout_marginEnd="94dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/imageButton1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/close"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="15dp" />
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/check"
+            android:layout_below="@+id/imageButton1"
+            android:layout_alignStart="@+id/imageButton1"
+            android:layout_marginTop="25dp" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

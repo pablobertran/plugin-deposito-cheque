@@ -36,18 +36,18 @@
     <activity
             android:name=".MakePhotoActivity"
             android:screenOrientation="sensorLandscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
+            android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".PreviewPhotoActivity"
             android:screenOrientation="sensorLandscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
+            android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".InstructionsActivity"
             android:screenOrientation="sensorLandscape"
             android:theme="@style/FullscreenTheme" />
     </config-file>
 
-    <source-file src="" target-dir="res/values" />
+    <source-file src="src/android/res/styles.xml" target-dir="res/values" />
     
     <source-file src="src/android/com/mbppower/CameraPreview.java" target-dir="src/com/mbppower" />
     <source-file src="src/android/com/mbppower/CameraActivity.java" target-dir="src/com/mbppower" />
