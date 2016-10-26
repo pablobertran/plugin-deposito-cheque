@@ -4,7 +4,7 @@ function DepositoCheque() {
     console.log("DepositoCheque.js: is created");
 }
 
-NativaPlugin.prototype.tomarCheque = function(successCallback, errorCallback, action, params) {
+DepositoCheque.prototype.tomarCheque = function(successCallback, errorCallback, action, params) {
     console.log("DepositoCheque.js");
     console.log("Action: " + action);
 

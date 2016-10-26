@@ -12,7 +12,7 @@
     <issue></issue>
 
   <js-module src="www/DepositoCheque.js" name="DepositoCheque">
-    <clobbers target="cordova.plugins.depositocheque" />
+    <clobbers target="DepositoCheque" />
   </js-module>
 
   <!-- android -->
@@ -23,6 +23,8 @@
             <param name="android-package" value="ec.com.easysoft.DepositoCheque"/>
         </feature>
     </config-file>
+
+    <source-file src="src/android/DepositoCheque.java" target-dir="src/ec/com/easysoft/" />
     
     <config-file target="AndroidManifest.xml" parent="/manifest">
 	<uses-feature android:name="android.hardware.camera" />
@@ -34,59 +36,36 @@
 
     <config-file target="AndroidManifest.xml" parent="/manifest/application">
     <activity
-            android:name=".MakePhotoActivity"
+            android:name="ec.com.easysoft.bancamovil.capturacheque.MakePhotoActivity"
             android:screenOrientation="sensorLandscape"
             android:theme="@style/FullscreenTheme" />
         <activity
-            android:name=".PreviewPhotoActivity"
+            android:name="ec.com.easysoft.bancamovil.capturacheque.PreviewPhotoActivity"
             android:screenOrientation="sensorLandscape"
             android:theme="@style/FullscreenTheme" />
         <activity
-            android:name=".InstructionsActivity"
+            android:name="ec.com.easysoft.bancamovil.capturacheque.InstructionsActivity"
             android:screenOrientation="sensorLandscape"
             android:theme="@style/FullscreenTheme" />
     </config-file>
 
-    <source-file src="src/android/res/styles.xml" target-dir="res/values" />
+    <source-file src="src/android/res/deposito_styles.xml" target-dir="res/values" />
     
-    <source-file src="src/android/com/mbppower/CameraPreview.java" target-dir="src/com/mbppower" />
-    <source-file src="src/android/com/mbppower/CameraActivity.java" target-dir="src/com/mbppower" />
-    <source-file src="src/android/com/mbppower/camera_activity.xml" target-dir="res/layout" />
-    <source-file src="src/android/com/mbppower/camera_theme.xml" target-dir="res/values" />
+    <source-file src="src/android/files/CameraPreview.java" target-dir="src/ec/com/easysoft/bancamovil/capturacheque" />
+    <source-file src="src/android/files/InstructionsActivity.java" target-dir="src/ec/com/easysoft/bancamovil/capturacheque" />
+    <source-file src="src/android/files/MakePhotoActivity.java" target-dir="src/ec/com/easysoft/bancamovil/capturacheque" />
+    <source-file src="src/android/files/PreviewPhotoActivity.java" target-dir="src/ec/com/easysoft/bancamovil/capturacheque" />
+    <source-file src="src/android/files/activity_instructions.xml" target-dir="res/layout" />
+    <source-file src="src/android/files/activity_make_photo.xml" target-dir="res/layout" />
+    <source-file src="src/android/files/activity_preview_photo.xml" target-dir="res/layout" />
+    <resource-file src="src/android/res/drawable/intructions.png" target="res/drawable/intructions.png" />
+    <resource-file src="src/android/res/drawable/button_continuar.png" target="res/drawable/button_continuar.png" />
+    <resource-file src="src/android/res/drawable/iconocamcirc.png" target="res/drawable/iconocamcirc.png" />
+    <resource-file src="src/android/res/drawable/iconflashw.png" target="res/drawable/iconflashw.png" />
+    <resource-file src="src/android/res/drawable/close.png" target="res/drawable/close.png" />
+    <resource-file src="src/android/res/drawable/check.png" target="res/drawable/check.png" />
+    <resource-file src="src/android/res/drawable/guia.png" target="res/drawable/guia.png" />
         
   </platform>
-
-    <!-- ios -->
-    <platform name="ios">
-        <config-file target="config.xml" parent="/*">
-            <feature name="CameraPreview">
-                <param name="ios-package" value="CameraPreview" onload="true" />
-            </feature>
-        </config-file>
-
-        <header-file src="src/ios/CameraPreview.h" />
-        <source-file src="src/ios/CameraPreview.m" />
-
-        <header-file src="src/ios/CameraSessionManager.h" />
-        <source-file src="src/ios/CameraSessionManager.m" />
-
-        <header-file src="src/ios/CameraRenderController.h" />
-        <source-file src="src/ios/CameraRenderController.m" />
-
-        <header-file src="src/ios/UIImage-Extensions.h" />
-        <source-file src="src/ios/UIImage-Extensions.m" />
-	
-	       <framework src="ImageIO.framework" weak="true" />
-         <framework src="MobileCoreServices.framework" />
-	       <framework src="CoreLocation.framework" />
-         <framework src="CoreGraphics.framework" />
-         <framework src="AssetsLibrary.framework" />
-         <framework src="CoreGraphics.framework" />
-         <framework src="CoreImage.framework" />
-         <framework src="OpenGLES.framework" />
-         <framework src="GLKit.framework" />
-         <framework src="CoreVideo.framework" />
-	 
-    </platform>
 
 </plugin>

@@ -15,6 +15,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
+import ec.com.easysoft.bancamovil.capturacheque.MakePhotoActivity;
+
 
 public class DepositoCheque extends CordovaPlugin {
 
@@ -50,27 +52,18 @@ public class DepositoCheque extends CordovaPlugin {
         this.callbackContext = callbackContext;
         this.argumentos = args;
 
-        showInstructions = args[0];
+        showInstructions = false;
 
         if (action.equals("takePicture")) {
             cordova.setActivityResultCallback(this);
             cordova.getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    if(showInstructions){
-                        Context context = cordova.getActivity()
-                                .getApplicationContext();
-                        Intent intent = new Intent(context, InstructionsActivity.class);
-                        //intent.putExtra("configuration", conf);
-                        cordova.getActivity().startActivityForResult(intent, DepositoCheque.TAKE_PICTURE);
-                    }else{
-                        Context context = cordova.getActivity()
+                    Context context = cordova.getActivity()
                                 .getApplicationContext();
                         Intent intent = new Intent(context, MakePhotoActivity.class);
-                        //intent.putExtra("configuration", conf);
+                        intent.putExtra("showInstructions", showInstructions);
                         cordova.getActivity().startActivityForResult(intent, DepositoCheque.TAKE_PICTURE);
-
-                    }
 
                 }
             });
@@ -85,7 +78,7 @@ public class DepositoCheque extends CordovaPlugin {
             switch(resultCode){
                 case Activity.RESULT_OK:
                 break;
-                case Activity.RESULT_CANCEL:
+                case Activity.RESULT_CANCELED:
                 break;        
             }
         }
@@ -110,7 +103,7 @@ public class DepositoCheque extends CordovaPlugin {
         try {
             resultado.put("codigoRetorno", code);
             resultado.put("mensaje", message);
-            resultado.put("imagen", plantilla);
+            resultado.put("imagen", imagenb64);
             resultado.put("noMostrarInstrucciones",notShowAgain);
         } catch (JSONException e) {
             e.printStackTrace();

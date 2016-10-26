@@ -12,7 +12,7 @@ import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
-import android.support.v7.app.AppCompatActivity;
+//import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.DisplayMetrics;
@@ -40,7 +40,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class MakePhotoActivity extends AppCompatActivity {
+
+public class MakePhotoActivity extends Activity {
 
     private static Camera mCamera;
 
@@ -83,7 +84,9 @@ public class MakePhotoActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_make_photo);
+        //setContentView(R.layout.activity_make_photo);
+        setContentView(getApplication().getResources().getIdentifier("activity_make_photo", "layout", getApplication().getPackageName()));
+
         if (mCamera == null) {
             mCamera = Camera.open();
         }
@@ -96,20 +99,29 @@ public class MakePhotoActivity extends AppCompatActivity {
         // Create our Preview view and set it as the content of our activity.
 
         //guide = (GuideView) findViewById(R.id.guide);
-        myImage = (ImageView) findViewById(R.id.lastPic);
-        imageButton = (ImageButton) findViewById(R.id.imageButton1);
-        flashButton = (ImageButton) findViewById(R.id.imageButton2);
-        overlay = (RelativeLayout) findViewById(R.id.overlay);
-        background = (RelativeLayout) findViewById(R.id.speedBackgound);
+        //myImage = (ImageView) findViewById(R.id.lastPic);
+        final String packageName = getApplication().getPackageName();
+        myImage = (ImageView) findViewById(getApplication().getResources().getIdentifier("lastPic","id",packageName));
+        //imageButton = (ImageButton) findViewById(R.id.imageButton1);
+        imageButton = (ImageButton) findViewById(getApplication().getResources().getIdentifier("imageButton1","id",packageName));
+        //flashButton = (ImageButton) findViewById(R.id.imageButton2);
+        flashButton = (ImageButton) findViewById(getApplication().getResources().getIdentifier("imageButton2","id",packageName));
+        //overlay = (RelativeLayout) findViewById(R.id.overlay);
+        overlay = (RelativeLayout) findViewById(getApplication().getResources().getIdentifier("overlay","id",packageName));
+        //background = (RelativeLayout) findViewById(R.id.speedBackgound);
+        background = (RelativeLayout) findViewById(getApplication().getResources().getIdentifier("camera_preview2","id",packageName));
 
         final ImageView guideImage = new ImageView(this);
 
 
-        final FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
+        //final FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
+        final FrameLayout preview = (FrameLayout) findViewById(getApplication().getResources().getIdentifier("camera_preview","id",packageName));
         mPreview = new CameraPreview(context, mCamera, ASPECT_RATIO);
 
 
         //mPreview.setCamera(mCamera);
+
+        // Prueba Copia
 
         if(!mPreview.haveFlashMode()){
             flashButton.setVisibility(View.GONE);
@@ -132,10 +144,10 @@ public class MakePhotoActivity extends AppCompatActivity {
                 int height = overlay.getMeasuredHeight();
 
                 int widthAvailableForPreview = metrics.widthPixels - overlay.getWidth();
-                Pair sizePreview = getOptimalCameraPreviewSize(widthAvailableForPreview, metrics.heightPixels);
-                preview.getLayoutParams().width = (int) sizePreview.first;
-                preview.getLayoutParams().height = (int) sizePreview.second;
-                mPreview.getHolder().setFixedSize((int) sizePreview.first, (int) sizePreview.second);
+                int[] sizePreview = getOptimalCameraPreviewSize(widthAvailableForPreview, metrics.heightPixels);
+                preview.getLayoutParams().width = sizePreview[0];
+                preview.getLayoutParams().height = sizePreview[1];
+                mPreview.getHolder().setFixedSize(sizePreview[0], sizePreview[1]);
                 preview.addView(mPreview);
                 //mCamera.startPreview();
 
@@ -159,18 +171,22 @@ public class MakePhotoActivity extends AppCompatActivity {
                         Log.v(TAG, "Preview1");
 
                         int[] location = new int[2];
-                        preview.getLocationOnScreen(location);
+                        preview.getLocationInWindow(location);
+                        int[] location2 = new int[2];
+                        background.getLocationInWindow(location2);
+
                         offSet = new int[2];
-                        Pair bh = getOptimalRectangleSize(preview.getWidth(), preview.getHeight());
-                        baseRectangle = (int) bh.first;
+                        int[] bh = getOptimalRectangleSize(preview.getWidth(), preview.getHeight());
+                        baseRectangle = bh[0];
                         int h = (int) (baseRectangle / ASPECTO_RATIO_RECT);
                         getOffsetToCenter(offSet, baseRectangle, h);
                         //guide.changeRectangle(location[0] + offSet[0], location[1] + offSet[1], baseRectangle, h);
 
                         /*Rectangle x: location[0]+offSet[0]  y: location[1]+offSet[1]  width: baseRectangle height: h*/
-                        guideImage.setImageResource(R.drawable.guia);
-                        guideImage.setX(location[0] + offSet[0]);
-                        guideImage.setY(location[1] + offSet[1]);
+                        //guideImage.setImageResource(R.drawable.guia);
+                        guideImage.setImageResource(getApplication().getResources().getIdentifier("guia","drawable",packageName));
+                        guideImage.setX(location[0]+offSet[0]);
+                        guideImage.setY(location[1]+offSet[1]-location2[1]);
                         LinearLayout.LayoutParams parms = new LinearLayout.LayoutParams(baseRectangle,h);
                         guideImage.setLayoutParams(parms);
                         //guideImage.setMaxWidth(baseRectangle);
@@ -178,12 +194,26 @@ public class MakePhotoActivity extends AppCompatActivity {
 
                         background.addView(guideImage);
 
+                        ViewTreeObserver vto3 = guideImage.getViewTreeObserver();
+                        vto3.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+
+                            @Override
+                            public void onGlobalLayout() {
+
+                                //mPreview.change();
+                                //mCamera.startPreview();
+                                guideImage.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                            }
+                        });
+
 
 
 
                         //mPreview.change();
                     }
                 });
+
+
 
             }
         });
@@ -481,29 +511,43 @@ public class MakePhotoActivity extends AppCompatActivity {
         return null;
     }
 
-    private Pair getOptimalCameraPreviewSize(int w, int h) {
+    private int[] getOptimalCameraPreviewSize(int w, int h) {
 
         int newWidth = (int) (ASPECT_RATIO * h);
-        Pair size = new Pair(w, h);
+        int size[] = new int[2];
+        //Pair size = new Pair(w, h);
+        size[0] = w;
+        size[1] = h;
         if (newWidth < w) {
-            size = new Pair(newWidth, h);
+            //size = new Pair(newWidth, h);
+            size[0] = newWidth;
+            size[1] = h;
         } else {
             int newHeight = (int) (w / ASPECT_RATIO);
-            size = new Pair(w, newHeight);
+            size[0] = w;
+            size[1] = newHeight;
+            //size = new Pair(w, newHeight);
         }
         return size;
     }
 
-    private Pair getOptimalRectangleSize(int w, int h) {
+    private int[] getOptimalRectangleSize(int w, int h) {
         int nHeight = (int) (h * (1 - PERCENTAGE_ADDED));
         int nWidth = (int) (w * (1 - PERCENTAGE_ADDED));
         int newWidth = (int) ((ASPECTO_RATIO_RECT * nHeight));
-        Pair size = new Pair(nWidth, nHeight);
+        int[] size = new int[2];
+        //Pair size = new Pair(nWidth, nHeight);
+        size[0] = nWidth;
+        size[1] = nHeight;
         if (newWidth < nWidth) {
-            size = new Pair(newWidth, nHeight);
+            //size = new Pair(newWidth, nHeight);
+            size[0] = newWidth;
+            size[1] = nHeight;
         } else {
             int newHeight = (int) ((nWidth / ASPECTO_RATIO_RECT));
-            size = new Pair(nWidth, newHeight);
+            //size = new Pair(nWidth, newHeight);
+            size[0] = nWidth;
+            size[1] = newHeight;
         }
         return size;
     }
@@ -605,28 +649,26 @@ public class MakePhotoActivity extends AppCompatActivity {
                     String message = data.getStringExtra("action");
 
 
-                    switch (message){
-                        case "another_photo":
-                            deleted = imgFile.delete();
-                            if(deleted){
-                                Toast toast1 = Toast.makeText(context, "Image Deleted",duration);
-                                toast1.show();
-                            }else {
-                                Toast toast1 = Toast.makeText(context, "Image Not Deleted",duration);
-                                toast1.show();
-                            }
-                            break;
-                        case "use_photo":
-                            returnPhotoInBase64(imgFile);
-                            deleted = imgFile.delete();
-                            if(deleted){
-                                Toast toast1 = Toast.makeText(context, "Image Deleted",duration);
-                                toast1.show();
-                            }else {
-                                Toast toast1 = Toast.makeText(context, "Image Not Deleted",duration);
-                                toast1.show();
-                            }
-                            break;
+                    if (message.equals("another_photo")) {
+                        deleted = imgFile.delete();
+                        if (deleted) {
+                            Toast toast1 = Toast.makeText(context, "Image Deleted", duration);
+                            toast1.show();
+                        } else {
+                            Toast toast1 = Toast.makeText(context, "Image Not Deleted", duration);
+                            toast1.show();
+                        }
+
+                    } else if (message.equals("use_photo")) {
+                        returnPhotoInBase64(imgFile);
+                        deleted = imgFile.delete();
+                        if (deleted) {
+                            Toast toast1 = Toast.makeText(context, "Image Deleted", duration);
+                            toast1.show();
+                        } else {
+                            Toast toast1 = Toast.makeText(context, "Image Not Deleted", duration);
+                            toast1.show();
+                        }
 
                     }
                     break;
