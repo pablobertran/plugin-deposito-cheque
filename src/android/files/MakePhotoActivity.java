@@ -31,6 +31,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.hardware.Camera.PictureCallback;
 import android.hardware.Camera.CameraInfo;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -101,29 +102,27 @@ public class MakePhotoActivity extends Activity {
         //guide = (GuideView) findViewById(R.id.guide);
         //myImage = (ImageView) findViewById(R.id.lastPic);
         final String packageName = getApplication().getPackageName();
-        myImage = (ImageView) findViewById(getApplication().getResources().getIdentifier("lastPic","id",packageName));
+        myImage = (ImageView) findViewById(getApplication().getResources().getIdentifier("lastPic", "id", packageName));
         //imageButton = (ImageButton) findViewById(R.id.imageButton1);
-        imageButton = (ImageButton) findViewById(getApplication().getResources().getIdentifier("imageButton1","id",packageName));
+        imageButton = (ImageButton) findViewById(getApplication().getResources().getIdentifier("imageButton1", "id", packageName));
         //flashButton = (ImageButton) findViewById(R.id.imageButton2);
-        flashButton = (ImageButton) findViewById(getApplication().getResources().getIdentifier("imageButton2","id",packageName));
+        flashButton = (ImageButton) findViewById(getApplication().getResources().getIdentifier("imageButton2", "id", packageName));
         //overlay = (RelativeLayout) findViewById(R.id.overlay);
-        overlay = (RelativeLayout) findViewById(getApplication().getResources().getIdentifier("overlay","id",packageName));
+        overlay = (RelativeLayout) findViewById(getApplication().getResources().getIdentifier("overlay", "id", packageName));
         //background = (RelativeLayout) findViewById(R.id.speedBackgound);
-        background = (RelativeLayout) findViewById(getApplication().getResources().getIdentifier("camera_preview2","id",packageName));
+        background = (RelativeLayout) findViewById(getApplication().getResources().getIdentifier("camera_preview2", "id", packageName));
 
         final ImageView guideImage = new ImageView(this);
 
 
         //final FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
-        final FrameLayout preview = (FrameLayout) findViewById(getApplication().getResources().getIdentifier("camera_preview","id",packageName));
+        final FrameLayout preview = (FrameLayout) findViewById(getApplication().getResources().getIdentifier("camera_preview", "id", packageName));
         mPreview = new CameraPreview(context, mCamera, ASPECT_RATIO);
 
 
         //mPreview.setCamera(mCamera);
 
-        // Prueba Copia
-
-        if(!mPreview.haveFlashMode()){
+        if (!mPreview.haveFlashMode()) {
             flashButton.setVisibility(View.GONE);
         }
 
@@ -184,10 +183,10 @@ public class MakePhotoActivity extends Activity {
 
                         /*Rectangle x: location[0]+offSet[0]  y: location[1]+offSet[1]  width: baseRectangle height: h*/
                         //guideImage.setImageResource(R.drawable.guia);
-                        guideImage.setImageResource(getApplication().getResources().getIdentifier("guia","drawable",packageName));
-                        guideImage.setX(location[0]+offSet[0]);
-                        guideImage.setY(location[1]+offSet[1]-location2[1]);
-                        LinearLayout.LayoutParams parms = new LinearLayout.LayoutParams(baseRectangle,h);
+                        guideImage.setImageResource(getApplication().getResources().getIdentifier("guia", "drawable", packageName));
+                        guideImage.setX(location[0] + offSet[0]);
+                        guideImage.setY(location[1] + offSet[1] - location2[1]);
+                        LinearLayout.LayoutParams parms = new LinearLayout.LayoutParams(baseRectangle, h);
                         guideImage.setLayoutParams(parms);
                         //guideImage.setMaxWidth(baseRectangle);
                         //guideImage.setMaxHeight(h);
@@ -207,12 +206,9 @@ public class MakePhotoActivity extends Activity {
                         });
 
 
-
-
                         //mPreview.change();
                     }
                 });
-
 
 
             }
@@ -623,7 +619,7 @@ public class MakePhotoActivity extends Activity {
 
     private void openPreview(File photo) {
         Intent intent = new Intent(this, PreviewPhotoActivity.class);
-        intent.putExtra("pathImage",photo.getPath());
+        intent.putExtra("pathImage", photo.getPath());
         startActivityForResult(intent, 1);
     }
 
@@ -632,14 +628,14 @@ public class MakePhotoActivity extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
         Boolean deleted;
         if (requestCode == 1) {
-            switch (resultCode){
+            switch (resultCode) {
                 case Activity.RESULT_CANCELED:
                     deleted = imgFile.delete();
-                    if(deleted){
-                        Toast toast1 = Toast.makeText(context, "Image Deleted",duration);
+                    if (deleted) {
+                        Toast toast1 = Toast.makeText(context, "Image Deleted", duration);
                         toast1.show();
-                    }else {
-                        Toast toast1 = Toast.makeText(context, "Image Not Deleted",duration);
+                    } else {
+                        Toast toast1 = Toast.makeText(context, "Image Not Deleted", duration);
                         toast1.show();
                     }
                     Toast toast = Toast.makeText(context, "Activity Cancelled by User", duration);
@@ -660,15 +656,20 @@ public class MakePhotoActivity extends Activity {
                         }
 
                     } else if (message.equals("use_photo")) {
-                        returnPhotoInBase64(imgFile);
-                        deleted = imgFile.delete();
+                        //String encodedImage = returnPhotoInBase64(imgFile);
+                        /*deleted = imgFile.delete();
                         if (deleted) {
                             Toast toast1 = Toast.makeText(context, "Image Deleted", duration);
                             toast1.show();
                         } else {
                             Toast toast1 = Toast.makeText(context, "Image Not Deleted", duration);
                             toast1.show();
-                        }
+                        }*/
+
+                        Intent data2 = new Intent();
+                        data2.putExtra("path", imgFile.getPath());
+                        setResult(RESULT_OK, data2);
+                        finish();
 
                     }
                     break;

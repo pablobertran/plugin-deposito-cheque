@@ -5,6 +5,8 @@ import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaInterface;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Base64;
 
 import org.json.JSONArray;
@@ -15,7 +17,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
+import java.io.ByteArrayOutputStream;
+
+import ec.com.easysoft.bancamovil.capturacheque.InstructionsActivity;
 import ec.com.easysoft.bancamovil.capturacheque.MakePhotoActivity;
+import ec.com.easysoft.bancamovil.capturacheque.PreviewPhotoActivity;
 
 
 public class DepositoCheque extends CordovaPlugin {
@@ -24,8 +30,7 @@ public class DepositoCheque extends CordovaPlugin {
     private CallbackContext callbackContext;
     private boolean showInstructions;
     public static final int TAKE_PICTURE = 1;
-    public static final int AUTHENTICATE = 2;
-    public static final int AUTHENTICATELIVENESS = 3;
+    public static final int INSTRUCTIONS = 2;
 
     JSONArray argumentos = null;
 
@@ -52,18 +57,23 @@ public class DepositoCheque extends CordovaPlugin {
         this.callbackContext = callbackContext;
         this.argumentos = args;
 
-        showInstructions = false;
+        showInstructions = args.getBoolean(0);
+        showInstructions = true;
 
         if (action.equals("takePicture")) {
             cordova.setActivityResultCallback(this);
             cordova.getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Context context = cordova.getActivity()
+                        Context context = cordova.getActivity()
                                 .getApplicationContext();
-                        Intent intent = new Intent(context, MakePhotoActivity.class);
-                        intent.putExtra("showInstructions", showInstructions);
-                        cordova.getActivity().startActivityForResult(intent, DepositoCheque.TAKE_PICTURE);
+                        if(!showInstructions) {
+                            Intent intent = new Intent(context, MakePhotoActivity.class);
+                            cordova.getActivity().startActivityForResult(intent, DepositoCheque.TAKE_PICTURE);
+                        }else{
+                            Intent intent = new Intent(context, InstructionsActivity.class);
+                            cordova.getActivity().startActivityForResult(intent, DepositoCheque.INSTRUCTIONS);
+                        }
 
                 }
             });
@@ -75,11 +85,48 @@ public class DepositoCheque extends CordovaPlugin {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (requestCode == DepositoCheque.TAKE_PICTURE) {
-            switch(resultCode){
+            switch (resultCode) {
                 case Activity.RESULT_OK:
-                break;
+                    String path = data.getStringExtra("path");
+                    BitmapFactory.Options options = new BitmapFactory.Options();
+                    options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+                    Bitmap bmp = BitmapFactory.decodeFile(path,options);
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos); //bm is the bitmap object
+                    byte[] b = baos.toByteArray();
+                    String image = Base64.encodeToString(b, Base64.DEFAULT);
+                    sendResultToApp("0000", "Capturada Correctamente", image, showInstructions);
+                    break;
                 case Activity.RESULT_CANCELED:
-                break;        
+                    sendResultToApp("9998", "Capturada Cancelada", showInstructions);
+                    break;
+                default:
+                    sendResultToApp("9999", "Error", showInstructions);
+                    break;
+
+            }
+        }else if(requestCode == DepositoCheque.INSTRUCTIONS){
+            switch (resultCode){
+                case Activity.RESULT_OK:
+                    showInstructions = data.getBooleanExtra("showInstructions",true);
+                    cordova.setActivityResultCallback(this);
+                    cordova.getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Context context = cordova.getActivity()
+                                    .getApplicationContext();
+                                Intent intent = new Intent(context, MakePhotoActivity.class);
+                                cordova.getActivity().startActivityForResult(intent, DepositoCheque.TAKE_PICTURE);
+
+                        }
+                    });
+                    break;
+                case Activity.RESULT_CANCELED:
+                    sendResultToApp("9998", "Capturada Cancelada", showInstructions);
+                    break;
+                default:
+                    sendResultToApp("9999", "Error", showInstructions);
+                    break;
             }
         }
     }
