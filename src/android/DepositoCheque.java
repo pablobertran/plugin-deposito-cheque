@@ -29,6 +29,7 @@ public class DepositoCheque extends CordovaPlugin {
 
     private CallbackContext callbackContext;
     private boolean showInstructions;
+    private boolean front;
     public static final int TAKE_PICTURE = 1;
     public static final int INSTRUCTIONS = 2;
 
@@ -58,6 +59,15 @@ public class DepositoCheque extends CordovaPlugin {
         this.argumentos = args;
 
         showInstructions = args.getBoolean(0);
+        front = true;
+        if(args.length() > 1) {
+            if (!args.getString(1).equals("reverso")) {
+                front = true;
+            } else {
+                front = false;
+            }
+        }
+
         //showInstructions = true;
 
         if (action.equals("takePicture")) {
@@ -69,6 +79,7 @@ public class DepositoCheque extends CordovaPlugin {
                                 .getApplicationContext();
                         if(!showInstructions) {
                             Intent intent = new Intent(context, MakePhotoActivity.class);
+                            intent.putExtra("front",front);
                             cordova.getActivity().startActivityForResult(intent, DepositoCheque.TAKE_PICTURE);
                         }else{
                             Intent intent = new Intent(context, InstructionsActivity.class);
@@ -116,6 +127,7 @@ public class DepositoCheque extends CordovaPlugin {
                             Context context = cordova.getActivity()
                                     .getApplicationContext();
                                 Intent intent = new Intent(context, MakePhotoActivity.class);
+                                intent.putExtra("front",front);
                                 cordova.getActivity().startActivityForResult(intent, DepositoCheque.TAKE_PICTURE);
 
                         }

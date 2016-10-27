@@ -88,6 +88,12 @@ public class MakePhotoActivity extends Activity {
         //setContentView(R.layout.activity_make_photo);
         setContentView(getApplication().getResources().getIdentifier("activity_make_photo", "layout", getApplication().getPackageName()));
 
+        final Boolean front;
+        Intent intent = getIntent();
+        front = intent.getBooleanExtra("front",true);
+
+
+
         if (mCamera == null) {
             mCamera = Camera.open();
         }
@@ -183,7 +189,11 @@ public class MakePhotoActivity extends Activity {
 
                         /*Rectangle x: location[0]+offSet[0]  y: location[1]+offSet[1]  width: baseRectangle height: h*/
                         //guideImage.setImageResource(R.drawable.guia);
-                        guideImage.setImageResource(getApplication().getResources().getIdentifier("guia", "drawable", packageName));
+                        if(front) {
+                            guideImage.setImageResource(getApplication().getResources().getIdentifier("guia", "drawable", packageName));
+                        }else{
+                            guideImage.setImageResource(getApplication().getResources().getIdentifier("guia_reverso", "drawable", packageName));
+                        }
                         guideImage.setX(location[0] + offSet[0]);
                         guideImage.setY(location[1] + offSet[1] - location2[1]);
                         LinearLayout.LayoutParams parms = new LinearLayout.LayoutParams(baseRectangle, h);
