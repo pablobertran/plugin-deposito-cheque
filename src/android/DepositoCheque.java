@@ -58,7 +58,7 @@ public class DepositoCheque extends CordovaPlugin {
         this.argumentos = args;
 
         showInstructions = args.getBoolean(0);
-        showInstructions = true;
+        //showInstructions = true;
 
         if (action.equals("takePicture")) {
             cordova.setActivityResultCallback(this);

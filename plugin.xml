@@ -65,6 +65,7 @@
     <resource-file src="src/android/res/drawable/close.png" target="res/drawable/close.png" />
     <resource-file src="src/android/res/drawable/check.png" target="res/drawable/check.png" />
     <resource-file src="src/android/res/drawable/guia.png" target="res/drawable/guia.png" />
+    <resource-file src="src/android/res/drawable/guia_reverso.png" target="res/drawable/guia_reverso.png" />
         
   </platform>
 
