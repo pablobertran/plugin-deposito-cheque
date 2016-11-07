@@ -28,7 +28,7 @@ public class DepositoCheque extends CordovaPlugin {
 
 
     private CallbackContext callbackContext;
-    private boolean showInstructions;
+    private boolean notShowInstructions;
     private boolean front;
     public static final int TAKE_PICTURE = 1;
     public static final int INSTRUCTIONS = 2;
@@ -58,7 +58,7 @@ public class DepositoCheque extends CordovaPlugin {
         this.callbackContext = callbackContext;
         this.argumentos = args;
 
-        showInstructions = args.getBoolean(0);
+        notShowInstructions = args.getBoolean(0);
         front = true;
         if(args.length() > 1) {
             if (!args.getString(1).equals("reverso")) {
@@ -77,7 +77,7 @@ public class DepositoCheque extends CordovaPlugin {
                 public void run() {
                         Context context = cordova.getActivity()
                                 .getApplicationContext();
-                        if(!showInstructions) {
+                        if(notShowInstructions) {
                             Intent intent = new Intent(context, MakePhotoActivity.class);
                             intent.putExtra("front",front);
                             cordova.getActivity().startActivityForResult(intent, DepositoCheque.TAKE_PICTURE);
@@ -106,20 +106,20 @@ public class DepositoCheque extends CordovaPlugin {
                     bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos); //bm is the bitmap object
                     byte[] b = baos.toByteArray();
                     String image = Base64.encodeToString(b, Base64.DEFAULT);
-                    sendResultToApp("0000", "Capturada Correctamente", image, showInstructions);
+                    sendResultToApp("0000", "Capturada Correctamente", image, notShowInstructions);
                     break;
                 case Activity.RESULT_CANCELED:
-                    sendResultToApp("9998", "Capturada Cancelada", showInstructions);
+                    sendResultToApp("9998", "Capturada Cancelada", notShowInstructions);
                     break;
                 default:
-                    sendResultToApp("9999", "Error", showInstructions);
+                    sendResultToApp("9999", "Error", notShowInstructions);
                     break;
 
             }
         }else if(requestCode == DepositoCheque.INSTRUCTIONS){
             switch (resultCode){
                 case Activity.RESULT_OK:
-                    showInstructions = data.getBooleanExtra("showInstructions",true);
+                    notShowInstructions = data.getBooleanExtra("showInstructions",true);
                     cordova.setActivityResultCallback(this);
                     cordova.getActivity().runOnUiThread(new Runnable() {
                         @Override
@@ -134,10 +134,10 @@ public class DepositoCheque extends CordovaPlugin {
                     });
                     break;
                 case Activity.RESULT_CANCELED:
-                    sendResultToApp("9998", "Capturada Cancelada", showInstructions);
+                    sendResultToApp("9998", "Capturada Cancelada", notShowInstructions);
                     break;
                 default:
-                    sendResultToApp("9999", "Error", showInstructions);
+                    sendResultToApp("9999", "Error", notShowInstructions);
                     break;
             }
         }
