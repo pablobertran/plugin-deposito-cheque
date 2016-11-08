@@ -365,13 +365,18 @@ public class MakePhotoActivity extends Activity {
         Bitmap cropImg = null;
         Bitmap bmp = BitmapFactory.decodeByteArray(data, 0, data.length);
         double ratio = (double) bmp.getWidth() / (double) mPreview.getWidth();
+        int ajusteH = 0;
+        if(!mPreview.pictureSizeSupported){
+            //Todo Asegurarse que la picturesize es mayor o igual a la previewsize
+            ajusteH = (int) ((bmp.getHeight() - (mPreview.getHeight()*ratio))/2);
+        }
 
         if (degree != 0) {
             Matrix m = new Matrix();
             m.postRotate(degree);
-            cropImg = Bitmap.createBitmap(bmp, (int) (offSet[0] * ratio), (int) (offSet[1] * ratio), (int) (baseRectangle * ratio), (int) ((baseRectangle / ASPECTO_RATIO_RECT) * ratio), m, true);
+            cropImg = Bitmap.createBitmap(bmp, (int) (offSet[0] * ratio), (int) (offSet[1] * ratio + ajusteH), (int) (baseRectangle * ratio), (int) ((baseRectangle / ASPECTO_RATIO_RECT) * ratio), m, true);
         } else {
-            cropImg = Bitmap.createBitmap(bmp, (int) (offSet[0] * ratio), (int) (offSet[1] * ratio), (int) (baseRectangle * ratio), (int) ((baseRectangle / ASPECTO_RATIO_RECT) * ratio));
+            cropImg = Bitmap.createBitmap(bmp, (int) (offSet[0] * ratio), (int) (offSet[1] * ratio + ajusteH), (int) (baseRectangle * ratio), (int) ((baseRectangle / ASPECTO_RATIO_RECT) * ratio));
         }
 
         ByteArrayOutputStream stream = new ByteArrayOutputStream();

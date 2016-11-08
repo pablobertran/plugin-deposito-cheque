@@ -19,14 +19,16 @@ import android.widget.RelativeLayout;
 /** A basic Camera preview class */
 public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback {
     private final String TAG = "Preview";
-    private SurfaceView mSurfaceView;
+    //private SurfaceView mSurfaceView;
     private SurfaceHolder mHolder;
     private Camera mCamera;
     private Camera.Size mPreviewSize;
     private List<Camera.Size> mSupportedPreviewSizes;
     private List<Camera.Size> mSupportedPictureSizes;
     private double aspect_ratio;
-    RelativeLayout buttons;
+
+    public boolean pictureSizeSupported; // Variable to set if picturseSize support the same aspect ratio as previewSize
+    //RelativeLayout buttons;
     //private GlobalVar  gv = new GlobalVar();
 
     public CameraPreview(Context context, Camera camera, double aspectRatio) {
@@ -227,11 +229,15 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
     }
 
     private Camera.Size getOptimalPictureSize(List<Camera.Size> sizes){
-        Camera.Size optimalSize = sizes.get(sizes.size()-1);
+        //Camera.Size optimalSize = sizes.get(sizes.size()-1);
+        Camera.Size optimalSize = sizes.get(0);
+        pictureSizeSupported = false;
         for (Camera.Size size : sizes) {
             double ratio = (double) size.width / size.height;
             if(ratio == aspect_ratio){
+                pictureSizeSupported = true;
                 optimalSize = size;
+                break;
             }
         }
         return optimalSize;
