@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController modalTransitionStyle="crossDissolve" id="BYZ-38-t0r" customClass="ViewController" customModule="DepositoChequeSwift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wdq-CE-JPF">
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="capturePicture:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GQq-Yx-PWa"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CBe-fy-hUb">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="CBe-fy-hUb" secondAttribute="height" multiplier="16:9" id="QlZ-uH-HWK"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guia" translatesAutoresizingMaskIntoConstraints="NO" id="3u4-uc-EdO" userLabel="Guia ImageView">
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="3u4-uc-EdO" secondAttribute="height" multiplier="156:74" id="iZJ-6k-nnI"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="wdq-CE-JPF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-11" id="0pc-vB-2zV"/>
+                            <constraint firstItem="wdq-CE-JPF" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="1QH-Gj-XFX"/>
+                            <constraint firstItem="CBe-fy-hUb" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="2IK-LX-VH1"/>
+                            <constraint firstItem="CBe-fy-hUb" firstAttribute="leading" secondItem="wdq-CE-JPF" secondAttribute="trailing" constant="20" id="E03-ly-mZc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3u4-uc-EdO" secondAttribute="trailing" id="TSR-3X-kar"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="CBe-fy-hUb" secondAttribute="trailing" constant="-20" id="Xyv-gK-1af"/>
+                            <constraint firstItem="3u4-uc-EdO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="70" id="auh-5g-JAx"/>
+                            <constraint firstItem="3u4-uc-EdO" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="fW9-YC-LSB"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cameraContainerView" destination="CBe-fy-hUb" id="rnN-cl-8Ts"/>
+                        <outlet property="guiaImageVIew" destination="3u4-uc-EdO" id="eX0-Vw-Y0o"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="747.554347826087" y="-272.46376811594206"/>
+        </scene>
+        <!--View Controller2-->
+        <scene sceneID="tPx-as-LfK">
+            <objects>
+                <viewController storyboardIdentifier="ViewControllerTwo" id="cjV-7A-hyS" customClass="ViewController2" customModule="DepositoChequeSwift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nJE-vN-ca6"/>
+                        <viewControllerLayoutGuide type="bottom" id="arc-Kl-TzD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nou-BX-axm">
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wb6-zT-4gg">
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="wb6-zT-4gg" secondAttribute="height" multiplier="156:74" id="pVD-R7-hOH"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hola Landscape" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QHb-f3-fdY">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H3C-LW-Ouo">
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="NQJ-LD-2va"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wb6-zT-4gg" firstAttribute="leading" secondItem="nou-BX-axm" secondAttribute="leadingMargin" constant="108" id="232-ha-pOa"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wb6-zT-4gg" secondAttribute="trailing" constant="100" id="DVq-NC-wlh"/>
+                            <constraint firstItem="H3C-LW-Ouo" firstAttribute="leading" secondItem="nou-BX-axm" secondAttribute="leadingMargin" constant="350" id="L9p-jJ-Gkh"/>
+                            <constraint firstItem="arc-Kl-TzD" firstAttribute="top" secondItem="QHb-f3-fdY" secondAttribute="bottom" constant="34" id="QTE-g3-DMb"/>
+                            <constraint firstItem="QHb-f3-fdY" firstAttribute="leading" secondItem="nou-BX-axm" secondAttribute="leadingMargin" constant="108" id="SPa-SU-9ef"/>
+                            <constraint firstItem="arc-Kl-TzD" firstAttribute="top" secondItem="H3C-LW-Ouo" secondAttribute="bottom" constant="65" id="TvW-wo-KlR"/>
+                            <constraint firstItem="wb6-zT-4gg" firstAttribute="top" secondItem="nJE-vN-ca6" secondAttribute="bottom" constant="25" id="kww-Lu-2lC"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="ImageView" destination="wb6-zT-4gg" id="zkw-9z-5pk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hJa-dz-7fr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1696.467391304348" y="-608.69565217391312"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="guia" width="1776" height="844"/>
+    </resources>
+</document>

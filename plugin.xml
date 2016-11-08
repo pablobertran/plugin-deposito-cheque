@@ -10,6 +10,7 @@
     <keywords>Ionic,Cordova,Camera, Preview, Popup, Floating, Box</keywords>
     <repo></repo>
     <issue></issue>
+    <dependency id="cordova-plugin-add-swift-support" version="1.6.0"/>
 
   <js-module src="www/DepositoCheque.js" name="DepositoCheque">
     <clobbers target="DepositoCheque" />
@@ -67,6 +68,20 @@
     <resource-file src="src/android/res/drawable/guia.png" target="res/drawable/guia.png" />
     <resource-file src="src/android/res/drawable/guia_reverso.png" target="res/drawable/guia_reverso.png" />
         
+  </platform>
+
+
+  <!-- iOS -->
+
+  <platform name="ios">
+    <config-file target="config.xml" parent="/*">
+        <feature name="DepositoCheque">
+            <param name="ios-package" value="DepositoCheque" />
+        </feature>
+    </config-file>
+    <source-file src="src/ios/DepositoCheque.swift" />
+    <source-file src="src/ios/ViewController.swift" />
+    <resource-file src="src/ios/DepositoCheque.storyboard" />
   </platform>
 
 </plugin>
