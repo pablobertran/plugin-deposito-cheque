@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="landscape">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,7 +14,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController modalTransitionStyle="crossDissolve" id="BYZ-38-t0r" customClass="ViewController" customModule="DepositoChequeSwift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Preview" modalTransitionStyle="crossDissolve" id="BYZ-38-t0r" customClass="ViewController" customModule="testIonicNativa" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -21,18 +24,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wdq-CE-JPF">
+                                <rect key="frame" x="9" y="172.5" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="capturePicture:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GQq-Yx-PWa"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CBe-fy-hUb">
+                                <rect key="frame" x="75" y="21" width="592" height="333"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="CBe-fy-hUb" secondAttribute="height" multiplier="16:9" id="QlZ-uH-HWK"/>
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guia" translatesAutoresizingMaskIntoConstraints="NO" id="3u4-uc-EdO" userLabel="Guia ImageView">
+                                <rect key="frame" x="90" y="55.5" width="557" height="264"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="3u4-uc-EdO" secondAttribute="height" multiplier="156:74" id="iZJ-6k-nnI"/>
                                 </constraints>
@@ -62,7 +68,7 @@
         <!--View Controller2-->
         <scene sceneID="tPx-as-LfK">
             <objects>
-                <viewController storyboardIdentifier="ViewControllerTwo" id="cjV-7A-hyS" customClass="ViewController2" customModule="DepositoChequeSwift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewControllerTwo" id="cjV-7A-hyS" customClass="ViewController2" customModule="testIonicNativa" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nJE-vN-ca6"/>
                         <viewControllerLayoutGuide type="bottom" id="arc-Kl-TzD"/>
@@ -72,30 +78,46 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wb6-zT-4gg">
+                                <rect key="frame" x="128" y="45" width="419" height="199"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="wb6-zT-4gg" secondAttribute="height" multiplier="156:74" id="pVD-R7-hOH"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hola Landscape" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QHb-f3-fdY">
+                                <rect key="frame" x="128" y="320" width="123" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H3C-LW-Ouo">
+                                <rect key="frame" x="370" y="280" width="34" height="30"/>
                                 <state key="normal" title="Back"/>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="show" id="NQJ-LD-2va"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ASW-W9-wfW">
+                                <rect key="frame" x="40" y="280" width="55" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="55" id="sTr-lM-wZP"/>
+                                </constraints>
+                                <state key="normal" title="Aceptar"/>
+                                <connections>
+                                    <action selector="donePicture:" destination="cjV-7A-hyS" eventType="touchUpInside" id="5Jq-He-YKH"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wb6-zT-4gg" firstAttribute="leading" secondItem="nou-BX-axm" secondAttribute="leadingMargin" constant="108" id="232-ha-pOa"/>
+                            <constraint firstItem="ASW-W9-wfW" firstAttribute="leading" secondItem="nou-BX-axm" secondAttribute="leadingMargin" constant="20" id="849-73-FZ8"/>
                             <constraint firstAttribute="trailingMargin" secondItem="wb6-zT-4gg" secondAttribute="trailing" constant="100" id="DVq-NC-wlh"/>
+                            <constraint firstItem="ASW-W9-wfW" firstAttribute="top" secondItem="H3C-LW-Ouo" secondAttribute="top" id="KdQ-4K-BZb"/>
                             <constraint firstItem="H3C-LW-Ouo" firstAttribute="leading" secondItem="nou-BX-axm" secondAttribute="leadingMargin" constant="350" id="L9p-jJ-Gkh"/>
                             <constraint firstItem="arc-Kl-TzD" firstAttribute="top" secondItem="QHb-f3-fdY" secondAttribute="bottom" constant="34" id="QTE-g3-DMb"/>
                             <constraint firstItem="QHb-f3-fdY" firstAttribute="leading" secondItem="nou-BX-axm" secondAttribute="leadingMargin" constant="108" id="SPa-SU-9ef"/>
                             <constraint firstItem="arc-Kl-TzD" firstAttribute="top" secondItem="H3C-LW-Ouo" secondAttribute="bottom" constant="65" id="TvW-wo-KlR"/>
+                            <constraint firstItem="arc-Kl-TzD" firstAttribute="top" secondItem="ASW-W9-wfW" secondAttribute="bottom" constant="58" id="cLh-zN-K62"/>
                             <constraint firstItem="wb6-zT-4gg" firstAttribute="top" secondItem="nJE-vN-ca6" secondAttribute="bottom" constant="25" id="kww-Lu-2lC"/>
                         </constraints>
                     </view>
@@ -105,7 +127,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hJa-dz-7fr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1696.467391304348" y="-608.69565217391312"/>
+            <point key="canvasLocation" x="1696.1019490254873" y="-608.79999999999995"/>
         </scene>
     </scenes>
     <resources>

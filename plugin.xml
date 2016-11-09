@@ -81,6 +81,7 @@
     </config-file>
     <source-file src="src/ios/DepositoCheque.swift" />
     <source-file src="src/ios/ViewController.swift" />
+    <source-file src="src/ios/ViewController2.swift" />
     <resource-file src="src/ios/DepositoCheque.storyboard" />
   </platform>
 

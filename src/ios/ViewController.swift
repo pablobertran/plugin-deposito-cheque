@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     var capturePreviewView: UIView!
     var capturePreviewLayer: AVCaptureVideoPreviewLayer!
     var captureQueue: OperationQueue!
+    var plugin: DepositoCheque!
     
     
     @IBAction func capturePicture(_ sender: UIButton) {
@@ -221,9 +222,11 @@ class ViewController: UIViewController {
             let image = UIImage(cgImage: cgImageResult, scale: 1.0, orientation: self.currentImageOrientation())
             
             //self.handleImage(image: image)
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let storyBoard : UIStoryboard = UIStoryboard(name: "DepositoCheque", bundle:nil)
             let controller = storyBoard.instantiateViewController(withIdentifier: "ViewControllerTwo") as! ViewController2
             controller.image = image
+            controller.plugin = self.plugin
+            
             self.present(controller, animated: true, completion: nil)
             
         })
