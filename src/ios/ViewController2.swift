@@ -18,7 +18,7 @@ class ViewController2: UIViewController {
     @IBAction func donePicture(_ sender: UIButton) {
         let imageCroppedData:NSData = UIImagePNGRepresentation(image)! as NSData
         strBase64 = imageCroppedData.base64EncodedString(options: [])
-        self.plugin.responseFromPlugin(code: "0000", message: "Capturada Correctamente", imageBase64: strBase64, notShowInstructions: false)
+        self.plugin.responseFromPlugin(code: "0000", message: "Capturada Correctamente", imageBase64: strBase64)
     }
     
     override func viewDidLoad() {

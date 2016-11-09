@@ -20,10 +20,14 @@ class ViewController: UIViewController {
     var capturePreviewLayer: AVCaptureVideoPreviewLayer!
     var captureQueue: OperationQueue!
     var plugin: DepositoCheque!
+    var reverso: Bool = false
     
+    @IBAction func close(_ sender: UIButton) {
+        self.plugin.close()
+    }
     
     @IBAction func capturePicture(_ sender: UIButton) {
-        takePicture();
+        takePicture()
     }
     
     override func viewDidLoad() {
@@ -33,6 +37,9 @@ class ViewController: UIViewController {
         captureQueue = OperationQueue()
         
         NotificationCenter.default.addObserver(self, selector: #selector(orientationChanged(sender:)), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+        if(self.reverso){
+            guiaImageVIew.image = UIImage(named: "guia_reverso.png")
+        }
         
     }
     
@@ -149,6 +156,7 @@ class ViewController: UIViewController {
             if (UIImagePickerController.isCameraDeviceAvailable(.front) && UIImagePickerController.isCameraDeviceAvailable(.rear)){
                 //self.cameraButton.hidden = false
             }
+            self.updateOrientation()
         }
     }
     

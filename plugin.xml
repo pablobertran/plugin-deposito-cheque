@@ -82,7 +82,18 @@
     <source-file src="src/ios/DepositoCheque.swift" />
     <source-file src="src/ios/ViewController.swift" />
     <source-file src="src/ios/ViewController2.swift" />
+    <source-file src="src/ios/InstructionsViewController.swift" />
     <resource-file src="src/ios/DepositoCheque.storyboard" />
+    <resource-file src="src/android/res/drawable/guia.png" />
+    <resource-file src="src/android/res/drawable/guia_reverso.png" />
+    <resource-file src="src/android/res/drawable/intructions.png" />
+    <resource-file src="src/ios/images/checked.png" />
+    <resource-file src="src/ios/images/unchecked.png" />
+    <resource-file src="src/android/res/drawable/button_continuar.png" />
+    <resource-file src="src/android/res/drawable/iconocamcirc.png" />
+    <resource-file src="src/android/res/drawable/iconflashw.png" />
+    <resource-file src="src/android/res/drawable/close.png" />
+    <resource-file src="src/android/res/drawable/check.png" />
   </platform>
 
 </plugin>
