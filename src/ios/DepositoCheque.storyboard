@@ -104,16 +104,19 @@
                                     <constraint firstAttribute="width" secondItem="3u4-uc-EdO" secondAttribute="height" multiplier="156:74" id="iZJ-6k-nnI"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="69l-lc-Xc9">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="69l-lc-Xc9">
                                 <rect key="frame" x="5" y="440" width="53" height="53"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="RPu-Hg-3vU"/>
                                     <constraint firstAttribute="width" constant="53" id="eBz-tD-3jD"/>
                                 </constraints>
                                 <state key="normal" image="iconflashw.png"/>
+                                <connections>
+                                    <action selector="activeFlash:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qXB-87-rT3"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wdq-CE-JPF">
-                                <rect key="frame" x="5" y="357.5" width="53" height="53"/>
+                                <rect key="frame" x="5" y="358" width="53" height="53"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="NmP-WH-WJf"/>
                                     <constraint firstAttribute="width" constant="53" id="nyD-Zl-4av"/>
@@ -154,6 +157,7 @@
                     </view>
                     <connections>
                         <outlet property="cameraContainerView" destination="CBe-fy-hUb" id="rnN-cl-8Ts"/>
+                        <outlet property="flashButton" destination="69l-lc-Xc9" id="md7-qs-lJv"/>
                         <outlet property="guiaImageVIew" destination="3u4-uc-EdO" id="eX0-Vw-Y0o"/>
                     </connections>
                 </viewController>
@@ -174,7 +178,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ASW-W9-wfW">
-                                <rect key="frame" x="20" y="306.5" width="40" height="40"/>
+                                <rect key="frame" x="20" y="307" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="1OT-ps-AsC"/>
                                     <constraint firstAttribute="height" constant="40" id="VGM-yZ-3Bz"/>
@@ -185,13 +189,13 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wb6-zT-4gg">
-                                <rect key="frame" x="83" y="163.5" width="929" height="441"/>
+                                <rect key="frame" x="83" y="164" width="929" height="441"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="wb6-zT-4gg" secondAttribute="height" multiplier="156:74" id="pVD-R7-hOH"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H3C-LW-Ouo">
-                                <rect key="frame" x="20" y="421.5" width="40" height="40"/>
+                                <rect key="frame" x="20" y="422" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="0c4-YM-OWs"/>
                                     <constraint firstAttribute="height" constant="40" id="YzP-af-8Jk"/>
@@ -219,7 +223,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hJa-dz-7fr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1681" y="-1101"/>
+            <point key="canvasLocation" x="1454" y="-1050"/>
         </scene>
     </scenes>
     <resources>

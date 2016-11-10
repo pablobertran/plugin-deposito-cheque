@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     
     @IBOutlet var cameraContainerView: UIView!
     @IBOutlet weak var guiaImageVIew: UIImageView!
+    @IBOutlet weak var flashButton: UIButton!
     
     var session: AVCaptureSession!
     var capturePreviewView: UIView!
@@ -30,8 +31,40 @@ class ViewController: UIViewController {
         takePicture()
     }
     
+    @IBAction func activeFlash(_ sender: UIButton) {
+        let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+        
+        // check if the device has torch
+        if (device?.hasTorch)! {
+            // lock your device for configuration
+            do {
+                try device?.lockForConfiguration()
+            } catch {
+                print("Error")
+            }
+            
+            // check if your torchMode is on or off. If on turns it off otherwise turns it on
+            if (device?.isTorchActive)! {
+                device?.torchMode = AVCaptureTorchMode.off
+            } else {
+                // sets the torch intensity to 100%
+                do {
+                    try device?.setTorchModeOnWithLevel(1.0)
+                } catch {
+                    print("Error")
+                }
+                //    avDevice.setTorchModeOnWithLevel(1.0, error: nil)
+            }
+            // unlock your device
+            device?.unlockForConfiguration()
+        }
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //self.flashButton.isHidden = true
         
         // Initialise the capture queue
         captureQueue = OperationQueue()
@@ -85,6 +118,12 @@ class ViewController: UIViewController {
     func enableCapture() {
         if (session != nil) { return }
         
+        let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+        
+        if((device?.isTorchAvailable)!){
+            self.flashButton.isHidden = false
+        }
+        
         let operation = captureOperation()
         operation.completionBlock = {
             self.operationCompleted()
@@ -97,6 +136,7 @@ class ViewController: UIViewController {
         let operation = BlockOperation {
             self.session = AVCaptureSession()
             self.session.sessionPreset = AVCaptureSessionPresetPhoto
+            
             let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
             
             let input: AVCaptureDeviceInput?
@@ -116,6 +156,8 @@ class ViewController: UIViewController {
             } catch {
                 return
             }
+            
+            
             
             if (device?.isFocusModeSupported(.autoFocus))! {
                 device?.focusPointOfInterest = CGPoint(x: 0.5, y: 0.5)
