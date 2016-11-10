@@ -61,6 +61,7 @@ class ViewController: UIViewController {
         super.viewDidDisappear(animated)
         
         captureQueue.cancelAllOperations()
+        captureQueue.waitUntilAllOperationsAreFinished()
         capturePreviewLayer.removeFromSuperlayer()
         for input in session.inputs {
             session.removeInput(input as! AVCaptureInput)
