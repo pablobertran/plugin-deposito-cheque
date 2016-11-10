@@ -13,6 +13,7 @@ class ViewController2: UIViewController {
     var image: UIImage!
     var plugin: DepositoCheque!
     var strBase64: String!
+    var reverso: Bool = false
     
     @IBOutlet weak var ImageView: UIImageView!
     @IBAction func donePicture(_ sender: UIButton) {
@@ -35,6 +36,15 @@ class ViewController2: UIViewController {
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .landscape
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "backToTakePicture" {
+            let viewController:ViewController = segue.destination as! ViewController
+            viewController.plugin = self.plugin
+            viewController.reverso = self.reverso
+        }
+        
     }
     
     

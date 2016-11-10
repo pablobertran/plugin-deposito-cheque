@@ -66,13 +66,14 @@ class ViewController: UIViewController {
         
         //self.flashButton.isHidden = true
         
+        if(self.reverso){
+            guiaImageVIew.image = UIImage(named: "guia_reverso.png")
+        }
         // Initialise the capture queue
         captureQueue = OperationQueue()
         
         NotificationCenter.default.addObserver(self, selector: #selector(orientationChanged(sender:)), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
-        if(self.reverso){
-            guiaImageVIew.image = UIImage(named: "guia_reverso.png")
-        }
+        
         
     }
     
@@ -88,6 +89,7 @@ class ViewController: UIViewController {
         //let value = UIInterfaceOrientation.landscapeLeft.rawValue
         //UIDevice.current.setValue(value, forKey: "orientation")
         enableCapture()
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -277,6 +279,7 @@ class ViewController: UIViewController {
             let controller = storyBoard.instantiateViewController(withIdentifier: "ViewControllerTwo") as! ViewController2
             controller.image = image
             controller.plugin = self.plugin
+            controller.reverso = self.reverso
             
             self.present(controller, animated: true, completion: nil)
             

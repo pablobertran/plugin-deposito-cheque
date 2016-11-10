@@ -79,6 +79,10 @@
             <param name="ios-package" value="DepositoCheque" />
         </feature>
     </config-file>
+
+    <config-file target="*-Info.plist" parent="NSCameraUsageDescription">
+            <string>Para tomar fotografías de sus cheques</string>
+    </config-file>
     <source-file src="src/ios/DepositoCheque.swift" />
     <source-file src="src/ios/ViewController.swift" />
     <source-file src="src/ios/ViewController2.swift" />

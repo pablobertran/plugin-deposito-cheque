@@ -202,7 +202,7 @@
                                 </constraints>
                                 <state key="normal" image="close.png"/>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="NQJ-LD-2va"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="backToTakePicture" id="NQJ-LD-2va"/>
                                 </connections>
                             </button>
                         </subviews>
