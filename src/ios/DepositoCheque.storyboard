@@ -124,10 +124,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PsM-Bc-M4S">
-                                <rect key="frame" x="13" y="28" width="52" height="52"/>
+                                <rect key="frame" x="13" y="28" width="40" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="52" id="9s2-Tz-9xj"/>
-                                    <constraint firstAttribute="width" constant="52" id="rID-x4-VGY"/>
+                                    <constraint firstAttribute="height" constant="40" id="9s2-Tz-9xj"/>
+                                    <constraint firstAttribute="width" constant="40" id="rID-x4-VGY"/>
                                 </constraints>
                                 <state key="normal" image="close.png"/>
                                 <connections>
@@ -174,7 +174,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ASW-W9-wfW">
-                                <rect key="frame" x="20" y="307" width="40" height="40"/>
+                                <rect key="frame" x="20" y="306.5" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="1OT-ps-AsC"/>
                                     <constraint firstAttribute="height" constant="40" id="VGM-yZ-3Bz"/>
@@ -185,7 +185,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wb6-zT-4gg">
-                                <rect key="frame" x="83" y="164" width="929" height="441"/>
+                                <rect key="frame" x="83" y="163.5" width="929" height="441"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="wb6-zT-4gg" secondAttribute="height" multiplier="156:74" id="pVD-R7-hOH"/>
                                 </constraints>
