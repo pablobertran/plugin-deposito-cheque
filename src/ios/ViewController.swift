@@ -24,6 +24,13 @@ class ViewController: UIViewController {
     var reverso: Bool = false
     
     @IBAction func close(_ sender: UIButton) {
+        let transition: CATransition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.type = kCATransitionReveal
+        transition.subtype = kCATransitionFade
+        self.view.window!.layer.add(transition, forKey: nil)
+        //self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
         self.plugin.close()
     }
     

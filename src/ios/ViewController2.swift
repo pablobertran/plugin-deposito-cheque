@@ -20,7 +20,7 @@ class ViewController2: UIViewController {
         let imageCroppedData:NSData = UIImagePNGRepresentation(image)! as NSData
         strBase64 = imageCroppedData.base64EncodedString(options: [])
         //self.dismiss(animated: true, completion: nil)
-        self.modalTransitionStyle = .crossDissolve
+        //self.modalTransitionStyle = .crossDissolve
         let transition: CATransition = CATransition()
         transition.duration = 0.5
         transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
