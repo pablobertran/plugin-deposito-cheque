@@ -19,6 +19,15 @@ class ViewController2: UIViewController {
     @IBAction func donePicture(_ sender: UIButton) {
         let imageCroppedData:NSData = UIImagePNGRepresentation(image)! as NSData
         strBase64 = imageCroppedData.base64EncodedString(options: [])
+        //self.dismiss(animated: true, completion: nil)
+        self.modalTransitionStyle = .crossDissolve
+        let transition: CATransition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.type = kCATransitionReveal
+        transition.subtype = kCATransitionFade
+        self.view.window!.layer.add(transition, forKey: nil)
+        self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
         self.plugin.responseFromPlugin(code: "0000", message: "Capturada Correctamente", imageBase64: strBase64)
     }
     

@@ -98,14 +98,16 @@ class ViewController: UIViewController {
         captureQueue.cancelAllOperations()
         captureQueue.waitUntilAllOperationsAreFinished()
         capturePreviewLayer.removeFromSuperlayer()
-        for input in session.inputs {
-            session.removeInput(input as! AVCaptureInput)
+        if (session != nil){
+            for input in session.inputs {
+                session.removeInput(input as! AVCaptureInput)
+            }
+            for output in session.outputs {
+                session.removeOutput(output as! AVCaptureOutput)
+            }
+            session.stopRunning()
+            session = nil
         }
-        for output in session.outputs {
-            session.removeOutput(output as! AVCaptureOutput)
-        }
-        session.stopRunning()
-        session = nil
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {

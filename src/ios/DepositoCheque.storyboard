@@ -15,7 +15,7 @@
         <!--Instructions View Controller-->
         <scene sceneID="Wke-Qw-obC">
             <objects>
-                <viewController storyboardIdentifier="Instructions" id="Cz0-CS-odS" customClass="InstructionsViewController" customModule="testIonicNativa" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Instructions" id="Cz0-CS-odS" customClass="InstructionsViewController" customModule="Banca_Virtual" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="57Q-GA-tic"/>
                         <viewControllerLayoutGuide type="bottom" id="XrF-Zh-4ff"/>
@@ -82,7 +82,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="Preview" modalTransitionStyle="crossDissolve" id="BYZ-38-t0r" customClass="ViewController" customModule="testIonicNativa" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Preview" modalTransitionStyle="crossDissolve" id="BYZ-38-t0r" customClass="ViewController" customModule="Banca_Virtual" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -93,7 +93,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CBe-fy-hUb">
                                 <rect key="frame" x="73" y="117" width="951" height="535"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="CBe-fy-hUb" secondAttribute="height" multiplier="16:9" id="QlZ-uH-HWK"/>
                                 </constraints>
@@ -168,7 +168,7 @@
         <!--View Controller2-->
         <scene sceneID="tPx-as-LfK">
             <objects>
-                <viewController storyboardIdentifier="ViewControllerTwo" id="cjV-7A-hyS" customClass="ViewController2" customModule="testIonicNativa" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewControllerTwo" id="cjV-7A-hyS" customClass="ViewController2" customModule="Banca_Virtual" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nJE-vN-ca6"/>
                         <viewControllerLayoutGuide type="bottom" id="arc-Kl-TzD"/>

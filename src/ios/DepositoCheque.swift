@@ -59,7 +59,7 @@ import Foundation
             pluginResult,
             callbackId: _command.callbackId
         )
-        self.viewController.dismiss(animated: true, completion: nil);
+        self.viewController.dismiss(animated: false, completion: nil);
     }
     
     func responseFromPlugin(code : String, message: String){
@@ -77,7 +77,7 @@ import Foundation
             pluginResult,
             callbackId: _command.callbackId
         )
-        self.viewController.dismiss(animated: true, completion: nil);
+        self.viewController.dismiss(animated: false, completion: nil);
     }
     
     func close(){
