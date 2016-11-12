@@ -288,6 +288,7 @@ class ViewController: UIViewController {
             let controller = storyBoard.instantiateViewController(withIdentifier: "ViewControllerTwo") as! ViewController2
             controller.image = image
             controller.plugin = self.plugin
+            controller.viewController1 = self
             controller.reverso = self.reverso
             
             self.present(controller, animated: true, completion: nil)
