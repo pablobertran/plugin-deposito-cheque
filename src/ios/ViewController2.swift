@@ -37,7 +37,7 @@ class ViewController2: UIViewController, CAAnimationDelegate {
         self.viewController1.view.backgroundColor = UIColor.white
         self.viewController1.view.isHidden = true
         self.view.window!.rootViewController?.view.backgroundColor = UIColor.white
-        self.plugin.responseFromPlugin(code: "0000", message: "Capturada Correctamente", imageBase64: strBase64)
+        
     }
     
     override func viewDidLoad() {
@@ -62,6 +62,7 @@ class ViewController2: UIViewController, CAAnimationDelegate {
         transition1.fillMode = kCAFillModeRemoved
         self.view.window!.layer.add(transition1, forKey: nil)
         self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
+        self.plugin.responseFromPlugin(code: "0000", message: "Capturada Correctamente", imageBase64: strBase64)
         
     }
     
