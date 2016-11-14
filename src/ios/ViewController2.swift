@@ -70,6 +70,10 @@ class ViewController2: UIViewController, CAAnimationDelegate {
         return .landscape
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "backToTakePicture" {
             let viewController:ViewController = segue.destination as! ViewController
